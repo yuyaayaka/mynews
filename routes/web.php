@@ -28,3 +28,4 @@ Route::get('XXX', 'AAAController@bbb');
  
  Route::get('profile/create', 'Admin\ProfileController@add');
  Route::get('profile/edit', 'Admin\ProfileController@edit');
+ 
