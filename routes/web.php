@@ -16,9 +16,11 @@ Route::get('/', function () {
 });
 Route::group(['prefix' => 'admin'], function() {
     // https://test.com/admin/news/create
-    Route::get('news/create', 'Admin\NewsController@add');
-    Route::get('profile/create', 'Admin\ProfileController@add');
-    Route::get('profile/edit', 'Admin\ProfileController@edit');
+    Route::get('news/create', 'Admin\NewsController@add')->middleware('auth');
+    Route::get('profile/create', 'Admin\ProfileController@add')->middleware('auth');
+    Route::post('profile/create', 'Admin\ProfileController@create')->middleware('auth');
+    Route::get('profile/edit', 'Admin\ProfileController@edit')->middleware('auth');
+    Route::post('profile/edit', 'Admin\ProfileController@update')->middleware('auth');
 });
     // https://XXXXXX.com/XXX/
     // AAAControllerのbbbというAction に渡す
@@ -29,3 +31,6 @@ Route::get('XXX', 'AAAController@bbb');
 // https://XXXXXX.com/admin/profile/create
  
  
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
